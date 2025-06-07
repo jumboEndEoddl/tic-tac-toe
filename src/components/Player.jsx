@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ user, symbol }) {
+export default function Player({ user, symbol, isActive }) {
   const [isEdit, setIsEdit] = useState(false);
   const [newName, setNewName] = useState(user);
 
@@ -21,7 +21,7 @@ export default function Player({ user, symbol }) {
   }
   return (
     <>
-      <li>
+      <li className={isActive ? "active" : undefined}>
         <span>
           {userName}
           <span>{symbol}</span>
@@ -34,4 +34,4 @@ export default function Player({ user, symbol }) {
 
 // player 컴포넌트 생성 user, symbol을 prop으로 받아오기
 // edit버튼 클릭시 이름 변경 기능. 논리부정 통한 save edit 스위치
-// input 에 새로운 값 입력시 입력값 기입
+// input 에 새로운 값 입력시 입력값 기입`
