@@ -1,19 +1,4 @@
-const initialBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-export default function GameBoard({ onSelect, turns }) {
-  const gameBoard = initialBoard;
-
-  for (const turn of turns) {
-    const { square, player } = turn;
-    const { col, row } = square;
-
-    gameBoard[col][row] = player;
-  }
-
+export default function GameBoard({ onSelect, gameBoard }) {
   // const [gameBoard, setGameBoard] = useState(initialBoard);
 
   // function handleClick(rowIndex, colIndex) {
@@ -23,7 +8,7 @@ export default function GameBoard({ onSelect, turns }) {
   //     return playBoard;
   //   });
   //   onSelect();
-  // }
+  // } 상태 병합
 
   return (
     <ol id="game-board">
@@ -32,7 +17,10 @@ export default function GameBoard({ onSelect, turns }) {
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => onSelect(rowIndex, colIndex)}>
+                <button
+                  onClick={() => onSelect(rowIndex, colIndex)}
+                  disabled={playerSymbol ? true : false}
+                >
                   {playerSymbol}
                 </button>{" "}
               </li>
